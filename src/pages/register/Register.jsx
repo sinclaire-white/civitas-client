@@ -1,5 +1,5 @@
 import { use } from "react";
-import { NavLink } from "react-router";
+import { Navigate, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../../providers/AuthContext";
 
 const Register = () => {
@@ -7,9 +7,9 @@ const Register = () => {
   // onClick={handleGoogleSignUp}
   // {passwordError && <p className="text-red-500">{passwordError}</p>}
 
-const {createUser} = use(AuthContext);
+const {createUser, signInWithGoogle} = use(AuthContext);
 
-
+const navigate = useNavigate()
 
 
   const handleRegister = (e) => {
@@ -20,7 +20,30 @@ const {createUser} = use(AuthContext);
       formData.entries()
     );
     createUser(email, password)
+    .then(result =>{
+            console.log(result.user)
+        })
+        .catch(error =>{
+            console.log(error)
+        })
   };
+
+
+
+
+  const handleRegisterWithGoogle = (e) =>{
+    e.preventDefault();
+        signInWithGoogle()
+        .then(() => navigate("/"))
+
+  }
+
+
+
+
+
+
+
 
   return (
     <div className="h-screen mt-40">
@@ -62,10 +85,11 @@ const {createUser} = use(AuthContext);
           />
 
           <button className="mt-4 btn btn-neutral text-secondary hover:bg-base-100">
-            Sign Up
+            Register
           </button>
           <div className="divider divider-neutral">Or</div>
           <button
+          onClick={handleRegisterWithGoogle}
             type="button"
             className="bg-black btn text-secondary btn-neutral hover:bg-base-100"
           >

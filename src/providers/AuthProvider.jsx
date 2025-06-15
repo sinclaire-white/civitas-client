@@ -2,64 +2,57 @@ import { useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { auth } from "../firebase/firebase.init";
-const googleProvider = new GoogleAuthProvider();
+
 
 
 const AuthProvider = ({children}) => {
-const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState(null);
+    const googleProvider = new GoogleAuthProvider();
 
-const createUser = (email, password) =>{
-        setLoading(true);
+
+
+
+ const [user, setUser] = useState(null);
+ const [loading, setLoading] = useState(true);
+
+ useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+    setLoading(false);
+  });
+  return () => unsubscribe();
+}, []);
+
+if (loading) {
+    return <div className="flex items-center justify-center min-h-screen">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>;
+  }
+
+    const createUser = (email,password) =>{
         return createUserWithEmailAndPassword(auth, email, password)
     }
-
-
-  const signInUser = (email, password) => {
-        setLoading(true);
-        return signInWithEmailAndPassword(auth, email, password)
+    
+ const loginUser = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password);
     }
 
-    const signInWithGoogle = () =>{
-        setLoading(true);
-        return signInWithPopup(auth, googleProvider)
+const signInWithGoogle = () => {
+        return signInWithPopup(auth, googleProvider);
     }
 
-    const signOutUser = () =>{
-        setLoading(true);
-        return signOut(auth)
-    }
 
-    useEffect( () =>{
-        const unSubscribe = onAuthStateChanged(auth, currentUser =>{
-            setUser(currentUser);
-            setLoading(false);
-            
-        })
-        return () =>{
-            unSubscribe();
-        }
-    }, [])
-
-
-
-
-const authInfo = {
-        loading,
+      const userInfo = {
         user,
         createUser,
-        signInUser,
+        loginUser,
         signInWithGoogle,
-        signOutUser
-    }
-
-
+        loading
+        }
+    
     return (
-        <AuthContext value={authInfo}>
+        <AuthContext value={userInfo}>
             {children}
         </AuthContext>
-            
-        
     );
 };
 

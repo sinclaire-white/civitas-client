@@ -1,14 +1,71 @@
-import React from "react";
-import { NavLink } from "react-router";
-
+import  { use } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router";
+import { AuthContext } from "../../providers/AuthContext";
+import Swal from "sweetalert2";
 const Login = () => {
-  // onSubmit={handleLogin}
-  //  onClick={handleGoogleLogin}
+
+  
+  
+
+  const { loginUser, signInWithGoogle } = use(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state || '/';
+
+  console.log('location in sign in page', location)
+
+  const handleLogin = e => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password)
+
+    // sign in user
+    loginUser(email, password)
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        }).then(() => {
+        
+        navigate(from, { replace: true });
+      });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+
+  }
+
+const handleLoginWithGoogle = () => {
+    signInWithGoogle()
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        }).then(() => {
+          navigate("/");
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Google Login Failed",
+          text: error.message,
+        });
+      });
+  };
 
   return (
     <div>
       <div className="h-screen mt-40">
-        <form>
+        <form onSubmit={handleLogin}>
           <fieldset className="p-4 mx-auto border fieldset bg-secondary border-base-300 rounded-box w-2/4">
             <h2 className="mb-5 text-5xl font-semibold text-center">
               Login to Civitas
@@ -38,7 +95,9 @@ const Login = () => {
               Login
             </button>
             <div className="divider divider-neutral">Or</div>
-            <button className="bg-black btn text-secondary btn-neutral hover:bg-base-100">
+            <button 
+            onClick={handleLoginWithGoogle}
+            className="bg-black btn text-secondary btn-neutral hover:bg-base-100">
               <svg
                 aria-label="Google logo"
                 width="16"
