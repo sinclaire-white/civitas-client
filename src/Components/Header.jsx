@@ -13,7 +13,7 @@ const Header = () => {
         </div>
         {/* upcoming events */}
         <div className="navbar-center hidden lg:flex">
-          <NavLink to={'/upcoming-events'}><a className=" text-xl">Upcoming Events</a></NavLink>
+          <NavLink to={'/upcoming-events'}><p className=" text-xl">Upcoming Events</p></NavLink>
         </div>
         {/* avatan and others */}
         <div className="navbar-end">

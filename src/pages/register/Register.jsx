@@ -1,13 +1,30 @@
+import { use } from "react";
 import { NavLink } from "react-router";
+import { AuthContext } from "../../providers/AuthContext";
 
 const Register = () => {
   // onSubmit={handleSignUp}
   // onClick={handleGoogleSignUp}
   // {passwordError && <p className="text-red-500">{passwordError}</p>}
 
+const {createUser} = use(AuthContext);
+
+
+
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const { name, photo, email, password } = Object.fromEntries(
+      formData.entries()
+    );
+    createUser(email, password)
+  };
+
   return (
     <div className="h-screen mt-40">
-      <form>
+      <form onSubmit={handleRegister}>
         <fieldset className="p-4 mx-auto border fieldset bg-secondary border-base-300 rounded-box w-2/4">
           <h2 className="mb-5 text-5xl font-semibold text-center">
             Register to Civitas
