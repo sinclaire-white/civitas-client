@@ -1,5 +1,50 @@
 @import "tailwindcss";
 @plugin "daisyui" {
    themes: light --default
-   dark --prefersdark;
+   /* dark --prefersdark; */
  }
+
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #103F56;
+  --color-secondary: #A3DCF5;
+  --color-accent: #ADFFAD;
+  --color-neutral: #A8EED1;
+  --color-info: #449C50;
+  --color-base-100: #F2EFE7;
+}
+@plugin "daisyui/theme" {
+  name: "dark";
+  --color-primary: #072A38;
+  --color-secondary: #4D90A3;
+  --color-accent: #4C8550;
+  --color-neutral: #5E9E88;
+  --color-info: #2F6B35;
+  --color-base-100: #1e293b;
+}
+
+
+
+
+
+
+
+
+
+
+
+ /* <!-- Coolors Palette Widget -->
+      <script src="https://coolors.co/palette-widget/widget.js"></script>
+      <script data-id="003759806366400109">new CoolorsPaletteWidget("003759806366400109", ["55b462","a3dcf5","adffad","103f56"]); </script> 
+      
+      primary - #103F56
+      secondary - #A3DCF5
+      accent - #ADFFAD
+      neutral - #A8EED1
+      info - #449C50
+      
+      
+      
+      */

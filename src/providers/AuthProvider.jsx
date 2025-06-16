@@ -40,13 +40,16 @@ const signInWithGoogle = () => {
         return signInWithPopup(auth, googleProvider);
     }
 
-
+const logOut = () =>{
+    return signOut(auth)
+}
       const userInfo = {
         user,
         createUser,
         loginUser,
         signInWithGoogle,
-        loading
+        loading,
+        logOut 
         }
     
     return (

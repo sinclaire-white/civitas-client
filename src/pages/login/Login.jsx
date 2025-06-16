@@ -66,14 +66,14 @@ const handleLoginWithGoogle = () => {
     <div>
       <div className="h-screen mt-40">
         <form onSubmit={handleLogin}>
-          <fieldset className="p-4 mx-auto border fieldset bg-secondary border-base-300 rounded-box w-2/4">
+          <fieldset className="w-2/4 p-4 mx-auto border fieldset border-base-300 rounded-box">
             <h2 className="mb-5 text-5xl font-semibold text-center">
               Login to Civitas
             </h2>
             <label className="font-bold label">Email</label>
             <input
               type="email"
-              className="input w-full"
+              className="w-full input"
               placeholder="Email"
               name="email"
               required
@@ -82,7 +82,7 @@ const handleLoginWithGoogle = () => {
             <label className="font-bold label">Password</label>
             <input
               type="password"
-              className="input w-full"
+              className="w-full input"
               placeholder="Password"
               name="password"
               required
@@ -90,14 +90,14 @@ const handleLoginWithGoogle = () => {
 
             <button
               type="submit"
-              className="mt-4 btn btn-neutral text-secondary hover:bg-base-100"
+              className="mt-4 btn"
             >
               Login
             </button>
             <div className="divider divider-neutral">Or</div>
             <button 
             onClick={handleLoginWithGoogle}
-            className="bg-black btn text-secondary btn-neutral hover:bg-base-100">
+            className="btn">
               <svg
                 aria-label="Google logo"
                 width="16"
