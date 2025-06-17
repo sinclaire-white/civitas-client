@@ -1,3 +1,5 @@
+import { NavLink } from "react-router";
+
 const Banner = () => {
   return (
     <div>
@@ -10,15 +12,15 @@ const Banner = () => {
       >
         <div className="hero-overlay"></div>
         <div className="text-center hero-content text-neutral-content">
-          <div className="max-w-md">
+          <div className="max-w-8/12">
             <h1 className="mb-5 text-5xl font-extrabold text-black">
-              Be the Change, Join the Movement!
+              Be the Change <br /> Join the Movement!
             </h1>
             <p className="mb-5 text-black">
               Empower communities, create impactful events, and connect with 
               like-minded changemakers. Let’s make a difference together!
             </p>
-            <button className="btn">Sign Up Now</button>
+            <NavLink to={'/register'}><button className="btn">Register Now</button></NavLink>
           </div>
         </div>
       </div>

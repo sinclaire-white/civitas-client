@@ -8,7 +8,7 @@ const Gallery = () => {
           <img
             src="https://i.ibb.co/DgrnSV1q/aneta-pawlik-OTMVrxbl-Fqg-unsplash.jpg"
             alt="Event 1"
-            className="object-cover w-full h-[400px] rounded-lg hover:scale-105 transition-transform"
+            className="object-cover w-full h-[415px] rounded-lg hover:scale-105 transition-transform"
           />
         </div>
         {/* Small Images */}

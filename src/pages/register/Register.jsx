@@ -48,14 +48,14 @@ const navigate = useNavigate()
   return (
     <div className="h-screen mt-40">
       <form onSubmit={handleRegister}>
-        <fieldset className="p-4 mx-auto border fieldset bg-secondary border-base-300 rounded-box w-2/4">
+        <fieldset className="w-2/4 p-4 mx-auto border fieldset bg-secondary border-base-300 rounded-box">
           <h2 className="mb-5 text-5xl font-semibold text-center">
             Register to Civitas
           </h2>
           <label className="font-bold label">Name</label>
           <input
             type="text"
-            className="input w-full"
+            className="w-full input"
             placeholder="Name"
             name="name"
             required
@@ -63,14 +63,14 @@ const navigate = useNavigate()
           <label className="font-bold label">Photo URL</label>
           <input
             type="text"
-            className="input w-full"
+            className="w-full input"
             placeholder="Photo URL"
             name="photo"
           />
           <label className="font-bold label">Email</label>
           <input
             type="email"
-            className="input w-full"
+            className="w-full input"
             placeholder="Email"
             name="email"
             required
@@ -78,20 +78,20 @@ const navigate = useNavigate()
           <label className="font-bold label">Password</label>
           <input
             type="password"
-            className="input w-full"
+            className="w-full input"
             placeholder="Password"
             name="password"
             required
           />
 
-          <button className="mt-4 btn btn-neutral text-secondary hover:bg-base-100">
+          <button className="mt-4 bg-black btn text-secondary btn-neutral hover:bg-base-100 hover:text-black">
             Register
           </button>
-          <div className="divider divider-neutral">Or</div>
+          <div className=" divider divider-primary">Or</div>
           <button
           onClick={handleRegisterWithGoogle}
             type="button"
-            className="bg-black btn text-secondary btn-neutral hover:bg-base-100"
+            className="bg-black btn text-secondary btn-neutral hover:bg-base-100 hover:text-black"
           >
             Register with Google
           </button>

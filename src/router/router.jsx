@@ -11,6 +11,7 @@ import Join from "../pages/joinEvent/Join";
 import Create from "../pages/createEvent/Create";
 import Manage from "../pages/manageEvents/Manage";
 import upcoming from "../pages/upcomingEvents/upcoming";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -31,15 +32,15 @@ const router = createBrowserRouter([
         },
         {
             path: '/join-events',
-            Component: Join
+            element: <PrivateRoute><Join></Join></PrivateRoute>
 
         },{
             path: '/create-events',
-            Component: Create
+            element: <PrivateRoute><Create></Create></PrivateRoute>
         },
         {
             path: '/manage-events',
-            Component: Manage
+            element: <PrivateRoute><Manage></Manage></PrivateRoute>
         },
         {
             path: '/upcoming-events',
