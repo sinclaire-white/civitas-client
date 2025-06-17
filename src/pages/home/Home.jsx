@@ -1,9 +1,16 @@
-import React from 'react';
+
+import Banner from './Banner';
+import Newsletter from './Newsletter';
+import Gallery from './Gallery';
+import Feature from './Feature';
 
 const Home = () => {
     return (
         <div>
-            <h1>This is home</h1>
+        <Banner></Banner>
+        <Feature></Feature>
+        <Gallery></Gallery>
+        <Newsletter></Newsletter>
         </div>
     );
 };
