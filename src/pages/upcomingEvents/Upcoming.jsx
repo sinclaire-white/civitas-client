@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router'; // Fixed import
 import useEventApi from '../../api/useEventApi';
 import Swal from 'sweetalert2';
 
@@ -10,11 +10,11 @@ const Upcoming = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [loading, setLoading] = useState(true);
 
-    // Fetch events 
     useEffect(() => {
         const fetchEvents = async () => {
             try {
                 const response = await upcomingEventsPromise();
+                console.log('Initial events:', response);
                 setEvents(response);
             } catch (error) {
                 console.error('Error fetching events:', error);
@@ -28,23 +28,25 @@ const Upcoming = () => {
             }
         };
         fetchEvents();
-    }, []); // Empty dependency array for initial fetch
+    }, []);
 
-    // Filter events to show only future events
     const currentDate = new Date('2025-06-18T00:00:00Z');
     const upcomingEvents = events.filter(event => new Date(event.date) >= currentDate);
 
-    // Event types for dropdown
     const eventTypes = ['Cleanup', 'Plantation', 'Donation', 'Fundraising', 'Blood Drive', 'Community Workshop'];
 
-    // Handle filter by event type
     const handleFilter = async (type) => {
         setEventType(type);
         setLoading(true);
         try {
-            const response = await upcomingEventsPromise({ eventType: type || undefined, search: searchQuery || undefined });
+            const params = { eventType: type, search: searchQuery };
+            if (!type) delete params.eventType;
+            if (!searchQuery) delete params.search;
+            const response = await upcomingEventsPromise(params);
+            console.log(`Filtered events (type: ${type}):`, response);
             setEvents(response);
         } catch (error) {
+            console.error('Error filtering events:', error);
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -55,15 +57,19 @@ const Upcoming = () => {
         }
     };
 
-    // Handle search by event title
     const handleSearch = async (e) => {
         const query = e.target.value;
         setSearchQuery(query);
         setLoading(true);
         try {
-            const response = await upcomingEventsPromise({ eventType: eventType || undefined, search: query || undefined });
+            const params = { eventType, search: query };
+            if (!eventType) delete params.eventType;
+            if (!query) delete params.search;
+            const response = await upcomingEventsPromise(params);
+            console.log(`Searched events (query: ${query}):`, response);
             setEvents(response);
         } catch (error) {
+            console.error('Error searching events:', error);
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -76,12 +82,11 @@ const Upcoming = () => {
 
     return (
         <div className="container p-4 mx-auto">
-            {/* Filter and Search Controls */}
             <div className="flex flex-col gap-4 mb-6 sm:flex-row">
                 <select
                     value={eventType}
                     onChange={(e) => handleFilter(e.target.value)}
-                    className="w-full select select-bordered sm:w-1/4 dark:bg-gray-700 dark:text-white"
+                    className="w-full select select-bordered sm:w-1/4"
                 >
                     <option value="">All Event Types</option>
                     {eventTypes.map(type => (
@@ -93,11 +98,9 @@ const Upcoming = () => {
                     placeholder="Search events by title..."
                     value={searchQuery}
                     onChange={handleSearch}
-                    className="w-full input input-bordered sm:w-1/2 dark:bg-gray-700 dark:text-white"
+                    className="w-full input input-bordered sm:w-1/2"
                 />
             </div>
-
-            {/* Event Grid */}
             {loading ? (
                 <div className="flex items-center justify-center min-h-[50vh]">
                     <span className="loading loading-spinner loading-lg text-primary"></span>
@@ -106,7 +109,7 @@ const Upcoming = () => {
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {upcomingEvents.length > 0 ? (
                         upcomingEvents.map(event => (
-                            <div key={event._id} className="bg-white rounded-lg shadow-xl card dark:bg-gray-800">
+                            <div key={event._id} className="rounded-lg shadow-xl bg-base-100 card">
                                 <figure className="w-full aspect-[4/3] overflow-hidden">
                                     <img
                                         src={event.thumbnail || 'https://via.placeholder.com/400x300'}
@@ -116,14 +119,14 @@ const Upcoming = () => {
                                     />
                                 </figure>
                                 <div className="p-4 card-body">
-                                    <h2 className="text-xl font-semibold card-title dark:text-white">{event.title}</h2>
+                                    <h2 className="text-xl font-semibold card-title text-base-content">{event.title}</h2>
                                     <div className="space-y-2">
-                                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                                        <p className="text-sm text-neutral">
                                             <strong>Location:</strong> {event.location || 'Not specified'}
                                         </p>
                                         <div className="flex items-center justify-between">
                                             <span className="badge badge-primary">{event.eventType}</span>
-                                            <span className="text-sm dark:text-gray-300">
+                                            <span className="text-sm text-neutral">
                                                 {new Date(event.date).toLocaleDateString()}
                                             </span>
                                         </div>
@@ -140,7 +143,9 @@ const Upcoming = () => {
                             </div>
                         ))
                     ) : (
-                        <p className="text-center text-gray-600 col-span-full dark:text-white">No upcoming events found.</p>
+                        <p className="text-center text-neutral col-span-full">
+                            {eventType ? `No ${eventType} events found.` : 'No upcoming events found.'}
+                        </p>
                     )}
                 </div>
             )}
