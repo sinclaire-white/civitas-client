@@ -19,11 +19,16 @@ const useEventApi = () => {
         return axiosSecure.get(`/events/${eventId}`).then((res) => res.data);
     };
 
+    const getJoinedEvents = (email) => {
+        return axiosSecure.get(`/participations?email=${email}`).then((res) => res.data);
+    };
+
     return {
         createEvent,
         eventsCreatedByPromise,
         upcomingEventsPromise,
         getEventById,
+        getJoinedEvents,
     };
 };
 
