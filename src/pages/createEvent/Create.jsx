@@ -4,12 +4,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
 
 import { AuthContext } from "../../providers/AuthContext";
+import useEventApi from "../../api/useEventApi";
 
 const Create = () => {
   const { user } = useContext(AuthContext);
   const [eventDate, setEventDate] = useState(null);
-
-  const handleCreateEvent = (e) => {
+  const { createEvent } = useEventApi();
+  const handleCreateEvent = async (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
@@ -18,15 +19,25 @@ const Create = () => {
     newEvent.date = eventDate;
     newEvent.creatorEmail = user?.email;
 
-    Swal.fire({
-    title: "Event Created!",
-    text: "Your event has been successfully created.",
-    icon: "success",
-    confirmButtonText: "OK",
-  });
-
-  form.reset();
-  setEventDate(null);
+    try {
+      await createEvent(newEvent);
+      Swal.fire({
+        title: "Event Created!",
+        text: "Your event has been successfully created.",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+      form.reset();
+      setEventDate(null);
+    } catch (error) {
+      console.error("Error creating event:", error);
+      Swal.fire({
+        title: "Error",
+        text: "Something went wrong while creating the event.",
+        icon: "error",
+        confirmButtonText: "Try Again",
+      });
+    }
   };
 
   return (

@@ -3,11 +3,14 @@ import Header from '../../Components/Header';
 import { Outlet } from 'react-router';
 import Footer from '../../Components/Footer';
 
+
 const Root = () => {
     return (
         <div>
             <Header></Header>
-            <Outlet></Outlet>
+           
+                <Outlet></Outlet>
+                
             <Footer></Footer>
         </div>
     );
