@@ -56,10 +56,14 @@ const router = createBrowserRouter([
         Component: Upcoming,
         loader: () => fetch("http://localhost:3000/events"),
       },
-     {
-                path: '/events/event-details/:eventId',
-                element: <PrivateRoute><EventDetails></EventDetails></PrivateRoute>,
-            },
+      {
+        path: "/events/event-details/:eventId",
+        element: (
+          <PrivateRoute>
+            <EventDetails></EventDetails>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);

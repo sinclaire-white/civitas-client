@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useEffect } from 'react';
 import useAuth from './useAuth';
 
 const axiosInstance = axios.create({
@@ -8,24 +9,44 @@ const axiosInstance = axios.create({
 const useAxiosSecure = () => {
     const { user, logOut } = useAuth();
 
-    axiosInstance.interceptors.request.use(async (config) => {
-        if (user) {
-            const token = await user.getIdToken();
-            config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-    });
+    useEffect(() => {
+        // Request interceptor
+        const requestInterceptor = axiosInstance.interceptors.request.use(
+            async (config) => {
+                if (user) {
+                    try {
+                        const token = await user.getIdToken();
+                        console.log('Attaching token to request:', token);
+                        config.headers.Authorization = `Bearer ${token}`;
+                    } catch (error) {
+                        console.error('Error getting token:', error);
+                        await logOut();
+                        return Promise.reject(error);
+                    }
+                }
+                return config;
+            },
+            (error) => Promise.reject(error)
+        );
 
-    axiosInstance.interceptors.response.use(
-        (response) => response,
-        async (error) => {
-            if (error.response?.status === 401 || error.response?.status === 403) {
-                await logOut();
-                console.log('Signed out user due to 401/403');
+        // Response interceptor
+        const responseInterceptor = axiosInstance.interceptors.response.use(
+            (response) => response,
+            async (error) => {
+                if (error.response?.status === 401 || error.response?.status === 403) {
+                    console.log('Authentication error, logging out');
+                    await logOut();
+                }
+                return Promise.reject(error);
             }
-            return Promise.reject(error);
-        }
-    );
+        );
+
+        // Cleanup
+        return () => {
+            axiosInstance.interceptors.request.eject(requestInterceptor);
+            axiosInstance.interceptors.response.eject(responseInterceptor);
+        };
+    }, [user, logOut]);
 
     return axiosInstance;
 };

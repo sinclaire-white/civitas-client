@@ -1,34 +1,41 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router'; // Fixed import
+import { Link } from 'react-router';
 import useEventApi from '../../api/useEventApi';
 import Swal from 'sweetalert2';
 
 const Upcoming = () => {
-    const { upcomingEventsPromise } = useEventApi();
+   const { getUpcomingEvents } = useEventApi();
     const [events, setEvents] = useState([]);
     const [eventType, setEventType] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchEvents = async () => {
-            try {
-                const response = await upcomingEventsPromise();
-                console.log('Initial events:', response);
-                setEvents(response);
-            } catch (error) {
-                console.error('Error fetching events:', error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Failed to load events',
-                });
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchEvents();
-    }, []);
+    const fetchEvents = async () => {
+        setLoading(true);
+         try {
+        const response = await getUpcomingEvents();
+        
+        if (Array.isArray(response.data)) {
+            setEvents(response.data);
+        } else {
+            console.error('Invalid response format:', response);
+            setEvents([]);
+        }
+    } catch (error) {
+        console.error('Error fetching events:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Failed to load events.',
+        });
+    } finally {
+        setLoading(false);
+    }
+    };
+
+    fetchEvents();
+}, []);
 
     const currentDate = new Date('2025-06-18T00:00:00Z');
     const upcomingEvents = events.filter(event => new Date(event.date) >= currentDate);
@@ -42,7 +49,7 @@ const Upcoming = () => {
             const params = { eventType: type, search: searchQuery };
             if (!type) delete params.eventType;
             if (!searchQuery) delete params.search;
-            const response = await upcomingEventsPromise(params);
+            const response = await getUpcomingEvents(params);
             console.log(`Filtered events (type: ${type}):`, response);
             setEvents(response);
         } catch (error) {
@@ -65,7 +72,7 @@ const Upcoming = () => {
             const params = { eventType, search: query };
             if (!eventType) delete params.eventType;
             if (!query) delete params.search;
-            const response = await upcomingEventsPromise(params);
+            const response = await getUpcomingEvents(params);
             console.log(`Searched events (query: ${query}):`, response);
             setEvents(response);
         } catch (error) {
