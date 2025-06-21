@@ -10,28 +10,24 @@ const Upcoming = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
+  useEffect(() => {
     const fetchEvents = async () => {
         setLoading(true);
-         try {
-        const response = await getUpcomingEvents();
-        
-        if (Array.isArray(response.data)) {
-            setEvents(response.data);
-        } else {
-            console.error('Invalid response format:', response);
-            setEvents([]);
+        try {
+            const response = await getUpcomingEvents();
+            
+            
+            setEvents(Array.isArray(response) ? response : response.data || []);
+        } catch (error) {
+            console.error('Error fetching events:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Failed to load events.',
+            });
+        } finally {
+            setLoading(false);
         }
-    } catch (error) {
-        console.error('Error fetching events:', error);
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Failed to load events.',
-        });
-    } finally {
-        setLoading(false);
-    }
     };
 
     fetchEvents();
@@ -42,50 +38,54 @@ const Upcoming = () => {
 
     const eventTypes = ['Cleanup', 'Plantation', 'Donation', 'Fundraising', 'Blood Drive', 'Community Workshop'];
 
-    const handleFilter = async (type) => {
-        setEventType(type);
-        setLoading(true);
-        try {
-            const params = { eventType: type, search: searchQuery };
-            if (!type) delete params.eventType;
-            if (!searchQuery) delete params.search;
-            const response = await getUpcomingEvents(params);
-            console.log(`Filtered events (type: ${type}):`, response);
-            setEvents(response);
-        } catch (error) {
-            console.error('Error filtering events:', error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Failed to filter events',
-            });
-        } finally {
-            setLoading(false);
-        }
-    };
+   const handleFilter = async (type) => {
+    setEventType(type);
+    setLoading(true);
+    try {
+        const params = { eventType: type, search: searchQuery };
+        if (!type) delete params.eventType;
+        if (!searchQuery) delete params.search;
+        const response = await getUpcomingEvents(params);
+        console.log(`Filtered events (type: ${type}):`, response);
+        
+        
+        setEvents(Array.isArray(response) ? response : response.data || []);
+    } catch (error) {
+        console.error('Error filtering events:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Failed to filter events',
+        });
+    } finally {
+        setLoading(false);
+    }
+};
 
     const handleSearch = async (e) => {
-        const query = e.target.value;
-        setSearchQuery(query);
-        setLoading(true);
-        try {
-            const params = { eventType, search: query };
-            if (!eventType) delete params.eventType;
-            if (!query) delete params.search;
-            const response = await getUpcomingEvents(params);
-            console.log(`Searched events (query: ${query}):`, response);
-            setEvents(response);
-        } catch (error) {
-            console.error('Error searching events:', error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Failed to search events',
-            });
-        } finally {
-            setLoading(false);
-        }
-    };
+    const query = e.target.value;
+    setSearchQuery(query);
+    setLoading(true);
+    try {
+        const params = { eventType, search: query };
+        if (!eventType) delete params.eventType;
+        if (!query) delete params.search;
+        const response = await getUpcomingEvents(params);
+        console.log(`Searched events (query: ${query}):`, response);
+        
+        
+        setEvents(Array.isArray(response) ? response : response.data || []);
+    } catch (error) {
+        console.error('Error searching events:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Failed to search events',
+        });
+    } finally {
+        setLoading(false);
+    }
+};
 
     return (
         <div className="container p-4 mx-auto">
