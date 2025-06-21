@@ -9,6 +9,9 @@ import Manage from "../pages/manageEvents/Manage";
 import PrivateRoute from "./PrivateRoute";
 import Upcoming from "../pages/upcomingEvents/Upcoming";
 import EventDetails from "../pages/joinEvent/EventDetails";
+import About from "../Components/About";
+import Faq from "../Components/Faq";
+import Contact from "../Components/Contact";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +66,16 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+          path: "/about",
+        Component: About,
+      },
+        {path: "/faq",
+        Component: Faq,},
+        {
+            path: "/contact",
+        Component: Contact,
+        }
     ],
   },
 ]);

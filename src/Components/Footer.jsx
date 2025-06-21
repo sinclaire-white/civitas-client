@@ -1,4 +1,5 @@
 import { FaLinkedin, FaLinkedinIn, FaSquareFacebook, FaSquareInstagram, FaSquareXTwitter } from "react-icons/fa6";
+import { NavLink } from "react-router";
 
 
 const Footer = () => {
@@ -21,17 +22,18 @@ const Footer = () => {
             <h3 className="mb-4 text-lg font-bold text-primary">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="/about" className="hover:text-primary hover:underline">About</a>
+                <NavLink to={'/about'} className="hover:text-primary hover:underline">About</NavLink>
               </li>
               <li>
-                <a href="/events" className="hover:text-primary hover:underline">Events</a>
+                <NavLink to={'/upcoming-events'} className="hover:text-primary hover:underline">Events</NavLink>
               </li>
               <li>
-                <a href="/contact" className="hover:text-primary hover:underline">Contact</a>
+                <NavLink to={'/contact'} className="hover:text-primary hover:underline">Contact</NavLink>
               </li>
               <li>
-                <a href="/faq" className="hover:text-primary hover:underline">FAQ</a>
+                <NavLink to={'/faq'} className="hover:text-primary hover:underline">FAQ</NavLink>
               </li>
+             
             </ul>
           </div>
 
@@ -39,16 +41,16 @@ const Footer = () => {
           <div>
             <h3 className="mb-4 text-lg font-bold text-primary">Follow Us</h3>
             <div className="flex space-x-4 text-lg">
-              <a href="#" className="text-gray-500 hover:text-primary">
+              <a href="https://www.facebook.com/" target="_blank" className="text-gray-500 hover:text-primary">
                 <FaSquareFacebook></FaSquareFacebook>
               </a>
-              <a href="#" className="text-gray-500 hover:text-primary">
+              <a href="https://x.com/" target="_blank" className="text-gray-500 hover:text-primary">
                 <FaSquareXTwitter></FaSquareXTwitter>
               </a>
-              <a href="#" className="text-gray-500 hover:text-primary">
+              <a href="https://www.instagram.com/" target="_blank" className="text-gray-500 hover:text-primary">
                 <FaSquareInstagram></FaSquareInstagram>
               </a>
-              <a href="#" className="text-gray-500 hover:text-primary">
+              <a href="https://www.linkedin.com/" target="_blank" className="text-gray-500 hover:text-primary">
                 <FaLinkedin></FaLinkedin>
               </a>
             </div>
