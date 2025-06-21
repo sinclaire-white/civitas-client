@@ -3,6 +3,7 @@ import { AuthContext } from "../providers/AuthContext";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 import { use } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const { logOut, user } = use(AuthContext);
@@ -53,18 +54,21 @@ const Header = () => {
 
         {/* Navigation Links */}
         <div className="navbar-center">
-  <NavLink to={"/upcoming-events"}>
-    <motion.p
-      className="text-lg font-medium text-primary"
-      whileHover={{ scale: 1.1, color: "#449C50" }}
-    >
-      Upcoming Events
-    </motion.p>
-  </NavLink>
-</div>
+          <NavLink to={"/upcoming-events"}>
+            <motion.p
+              className="text-lg font-medium text-primary"
+              whileHover={{ scale: 1.1, color: "#449C50" }}
+            >
+              Upcoming Events
+            </motion.p>
+          </NavLink>
+        </div>
 
         {/* User Profile / Login */}
         <div className="navbar-end">
+          <div>
+            <ThemeToggle></ThemeToggle>
+          </div>
           {!user ? (
             <motion.div
               className="flex gap-4"
@@ -91,7 +95,7 @@ const Header = () => {
                 >
                   <img
                     alt="User Avatar"
-                    src={"user.photo || user.photoURL ||"}
+                    src={user?.photoURL || user?.photo || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
                   />
                 </motion.div>
               </div>
