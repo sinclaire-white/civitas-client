@@ -12,11 +12,13 @@ import EventDetails from "../pages/joinEvent/EventDetails";
 import About from "../Components/About";
 import Faq from "../Components/Faq";
 import Contact from "../Components/Contact";
+import ErrorPage from "../Components/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: Root,
+    errorElement: <ErrorPage></ErrorPage>, 
     children: [
       {
         index: true,

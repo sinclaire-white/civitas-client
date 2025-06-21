@@ -80,12 +80,12 @@ const EventDetails = () => {
         return <div className="p-4 text-center text-gray-600 dark:text-white">Event not found.</div>;
     }
 
-    return (
+    return (         
         <div className="container max-w-4xl p-4 mx-auto">
             <div className="bg-white rounded-lg shadow-xl card dark:bg-gray-800">
                 <figure className="w-full aspect-[16/9] overflow-hidden">
                     <img
-                        src={event.thumbnail || 'https://via.placeholder.com/800x450'}
+                        src={event.thumbnail}
                         alt={event.title}
                         className="object-cover w-full h-full"
                         loading="lazy"
@@ -99,19 +99,19 @@ const EventDetails = () => {
                             <div>
                                 <p className="dark:text-gray-300"><strong>Event Type:</strong> {event.eventType}</p>
                                 <p className="dark:text-gray-300"><strong>Date:</strong> {new Date(event.date).toLocaleDateString()}</p>
-                                <p className="dark:text-gray-300"><strong>Time:</strong> {event.time || 'Not specified'}</p>
+                                <p className="dark:text-gray-300"><strong>Time:</strong> {event.time}</p>
                             </div>
                             <div>
-                                <p className="dark:text-gray-300"><strong>Location:</strong> {event.location || 'Not specified'}</p>
-                                <p className="dark:text-gray-300"><strong>Organizer:</strong> {event.creatorEmail || 'Anonymous'}</p>
-                                <p className="dark:text-gray-300"><strong>Capacity:</strong> {event.capacity || 'Unlimited'}</p>
+                                <p className="dark:text-gray-300"><strong>Location:</strong> {event.location}</p>
+                                <p className="dark:text-gray-300"><strong>Organizer:</strong> {event.creatorEmail}</p>
+                                <p className="dark:text-gray-300"><strong>Capacity:</strong> {event.capacity}</p>
                             </div>
                         </div>
                     </div>
                     <div className="justify-end mt-6 card-actions">
                         <button
                             onClick={handleJoinEvent}
-                            className="text-white btn btn-primary"
+                            className="text-white btn btn-primary hover:scale-105"
                             disabled={!user}
                         >
                             Join Event

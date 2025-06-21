@@ -6,7 +6,7 @@ import Feature from './Feature';
 
 const Home = () => {
     return (
-        <div>
+        <div className="bg-base-100"> 
         <Banner></Banner>
         <Feature></Feature>
         <Gallery></Gallery>
