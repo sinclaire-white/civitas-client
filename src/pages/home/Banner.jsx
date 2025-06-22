@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 import { motion } from "framer-motion";
 
 const Banner = () => {
-  const staticBannerImage = "https://i.ibb.co/Df1MtHwz/Gemini-Generated-Image-5nt40g5nt40g5nt4.png";
+  const bannerImage = "https://i.ibb.co/0p7NdfgD/Gemini-Generated-Image-5nt40g5nt40g5nt4-1.png";
 
   return (
     <section className="p-4 md:p-6 lg:p-8">
@@ -39,12 +39,12 @@ const Banner = () => {
               className="flex flex-col justify-center gap-4 sm:flex-row sm:justify-start"
             >
               <NavLink to={"/create-event"}>
-                <button className="w-full px-8 text-lg font-semibold transition-transform duration-300 shadow-xl btn btn-accent btn-lg hover:scale-105 sm:w-auto">
+                <button className="w-full px-8 text-lg font-semibold transition-transform duration-300 shadow-xl text-primary btn btn-accent btn-lg hover:scale-105 sm:w-auto">
                   Create Event
                 </button>
               </NavLink>
               <NavLink to={"/upcomig-events"}>
-                <button className="w-full px-8 text-lg font-semibold text-white transition-transform duration-300 shadow-xl btn btn-outline btn-lg hover:scale-105 sm:w-auto hover:text-black">
+                <button className="w-full px-8 text-lg font-semibold transition-transform duration-300 shadow-xl btn btn-lg hover:scale-105 sm:w-auto">
                   Find Events
                 </button>
               </NavLink>
@@ -53,7 +53,7 @@ const Banner = () => {
 
           <div className="flex items-center justify-center w-full h-full sm:w-1/2">
             <img
-              src={staticBannerImage}
+              src={bannerImage}
               alt="Inspiring community event"
               className="object-cover w-full h-full shadow-2xl rounded-3xl"
             />

@@ -66,7 +66,7 @@ const Header = () => {
 
         {/* User Profile / Login */}
         <div className="navbar-end">
-          <div>
+          <div className="mr-3">
             <ThemeToggle></ThemeToggle>
           </div>
           {!user ? (

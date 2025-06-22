@@ -37,16 +37,16 @@ const Feature = () => {
 
   return (
     <motion.div
-      className="px-4 py-16 md:px-8 lg:px-16 bg-base-100" // Add background color for section, responsive padding
+      className="px-4 py-16 md:px-8 lg:px-16 bg-base-100" 
       initial="hidden"
-      whileInView="visible" // Animate when component comes into view
-      viewport={{ once: true, amount: 0.3 }} // Only animate once, when 30% of component is visible
+      whileInView="visible" 
+      viewport={{ once: true, amount: 0.3 }} 
       variants={sectionVariants}
     >
       {/* Section Header */}
       <div className="max-w-4xl mx-auto mb-12 text-center"> {/* Center and limit width */}
         <motion.h2
-          className="text-3xl font-extrabold text-gray-800 sm:text-4xl lg:text-5xl" // Responsive font sizes, darker text
+          className="text-3xl font-extrabold text-primary sm:text-4xl lg:text-5xl" 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -54,7 +54,7 @@ const Feature = () => {
           What We Offer
         </motion.h2>
         <motion.p
-          className="mt-4 text-base leading-relaxed text-gray-600 sm:text-lg" // Responsive font sizes, relaxed line height
+          className="mt-4 text-base leading-relaxed opacity-50 text-primary sm:text-lg" 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}

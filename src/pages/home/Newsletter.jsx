@@ -26,7 +26,7 @@ const Newsletter = () => {
             type="email"
             placeholder="Your Best Email Address"
             
-            className="w-full text-gray-800 input input-bordered input-lg sm:flex-1 focus:outline-none focus:border-info focus:ring-1 focus:ring-info"
+            className="w-full text-primary input input-bordered input-lg sm:flex-1 focus:outline-none focus:border-info focus:ring-1 focus:ring-info"
             aria-label="Enter your email to subscribe to the newsletter"
           />
           <button

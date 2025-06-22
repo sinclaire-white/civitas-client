@@ -15,9 +15,40 @@ const Register = () => {
       formData.entries()
     );
 
+ // --- Password Validation ---
+    if (password.length < 6) {
+      Swal.fire({
+        icon: "error",
+        title: "Password Error",
+        text: "Password must be at least 6 characters long.",
+      });
+      return; 
+    }
+    if (!/[A-Z]/.test(password)) {
+      Swal.fire({
+        icon: "error",
+        title: "Password Error",
+        text: "Password must contain at least one uppercase letter.",
+      });
+      return; 
+    }
+    if (!/[a-z]/.test(password)) {
+      Swal.fire({
+        icon: "error",
+        title: "Password Error",
+        text: "Password must contain at least one lowercase letter.",
+      });
+      return; 
+    }
+
+
+
+
+
+
     try {
       const result = await createUser(email, password);
-      // Optionally save user info
+      
       Swal.fire("Welcome!", `Account created for ${name}`, "success");
       console.log("User created:", result.user);
       navigate("/login");

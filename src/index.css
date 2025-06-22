@@ -17,7 +17,7 @@
 }
 @plugin "daisyui/theme" {
   name: "dark";
-  --color-primary: #072A38;
+  --color-primary: #A3DCF5;
   --color-secondary: #4D90A3;
   --color-accent: #4C8550;
   --color-neutral: #5E9E88;
@@ -34,17 +34,3 @@
 
 
 
-
- /* <!-- Coolors Palette Widget -->
-      <script src="https://coolors.co/palette-widget/widget.js"></script>
-      <script data-id="003759806366400109">new CoolorsPaletteWidget("003759806366400109", ["55b462","a3dcf5","adffad","103f56"]); </script> 
-      
-      primary - #103F56
-      secondary - #A3DCF5
-      accent - #ADFFAD
-      neutral - #A8EED1
-      info - #449C50
-      
-      
-      
-      */

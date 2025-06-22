@@ -2,10 +2,10 @@ const Gallery = () => {
   return (
     <div className="p-4 md:p-6 lg:p-8">
       <div className="mb-12 text-center">
-        <h2 className="text-4xl font-extrabold text-gray-800 sm:text-5xl">
+        <h2 className="text-4xl font-extrabold text-primary sm:text-5xl">
           Event <span className="text-primary-focus">Highlights</span>
         </h2>
-        <p className="max-w-2xl mx-auto mt-4 text-lg text-gray-600">
+        <p className="max-w-2xl mx-auto mt-4 text-lg text-primary">
           Relive the moments and see the impact we've made together through our diverse community events.
         </p>
       </div>
