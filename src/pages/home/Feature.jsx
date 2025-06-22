@@ -65,18 +65,18 @@ const Feature = () => {
       </div>
 
       {/* Features Grid */}
-      <div className="grid max-w-6xl grid-cols-1 gap-8 mx-auto md:grid-cols-2 lg:grid-cols-3"> {/* More responsive grid, larger gap, max-width */}
+      <div className="grid max-w-6xl grid-cols-1 gap-8 mx-auto md:grid-cols-2 lg:grid-cols-3"> 
         {/* Feature Card 1: Create Events */}
         <motion.div
-          className="flex flex-col items-center justify-between p-8 text-center bg-white border border-gray-100 rounded-lg shadow-xl" // Better card styling
+          className="flex flex-col items-center justify-between p-8 text-center bg-white border border-gray-100 rounded-lg shadow-xl" 
           variants={cardVariants}
           whileHover="hover"
         >
-          <i className="mb-4 text-5xl icon text-primary">🎉</i> {/* Larger icon, primary color */}
+          <i className="mb-4 text-5xl icon text-primary">🎉</i> 
           <h3 className="mb-2 text-2xl font-bold text-gray-800">Create Events</h3>
           <p className="flex-grow mt-2 text-gray-700">Organize events to make an impact in your community. Plan, invite, and manage effortlessly.</p>
           <NavLink to={'/create-events'} className="w-full mt-6">
-            <button className="text-lg font-semibold transition duration-300 transform rounded-full btn btn-primary btn-outline btn-block hover:scale-105"> {/* Styled button */}
+            <button className="text-lg font-semibold transition duration-300 transform rounded-full btn btn-primary btn-outline btn-block hover:scale-105"> 
               Start Creating
             </button>
           </NavLink>
@@ -88,7 +88,7 @@ const Feature = () => {
           variants={cardVariants}
           whileHover="hover"
         >
-          <i className="mb-4 text-5xl icon text-secondary">📅</i> {/* Larger icon, secondary color */}
+          <i className="mb-4 text-5xl icon text-secondary">📅</i> 
           <h3 className="mb-2 text-2xl font-bold text-gray-800">Join Events</h3>
           <p className="flex-grow mt-2 text-gray-700">Explore and join events happening around you. Find causes you care about and participate.</p>
           <NavLink to={'/upcoming-events'} className="w-full mt-6">
@@ -104,7 +104,7 @@ const Feature = () => {
           variants={cardVariants}
           whileHover="hover"
         >
-          <i className="mb-4 text-5xl icon text-accent">⚙️</i> {/* Larger icon, accent color */}
+          <i className="mb-4 text-5xl icon text-accent">⚙️</i> 
           <h3 className="mb-2 text-2xl font-bold text-gray-800">Manage Events</h3>
           <p className="flex-grow mt-2 text-gray-700">Edit or track events you’ve created or joined. Stay organized with your community efforts.</p>
           <NavLink to={'/manage-events'} className="w-full mt-6">

@@ -21,7 +21,7 @@ const Gallery = () => {
         </div>
 
         {/* Top Right Small Images */}
-        {/* Adjusted this section to fit the new grid while maintaining your original 4 images */}
+        
         <div className="grid grid-cols-2 col-span-2 gap-3 sm:col-span-2 lg:col-span-2 md:gap-4">
           <img
             src="https://i.ibb.co/xKshc3HY/noah-buscher-x8-ZStuk-S2-PM-unsplash.jpg"
@@ -46,7 +46,7 @@ const Gallery = () => {
         </div>
 
         {/* Bottom Horizontal Images */}
-        {/* This section will now only contain your two original images, adapting to the full grid width */}
+        
         <div className="grid grid-cols-2 col-span-2 gap-3 sm:col-span-4 lg:col-span-6 md:gap-4">
           <img
             src="https://i.ibb.co/kgcsDrFk/carmen-laezza-Lme3a-QRAi-C8-unsplash.jpg"
