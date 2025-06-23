@@ -16,10 +16,10 @@ const useAxiosSecure = () => {
                 if (user) {
                     try {
                         const token = await user.getIdToken();
-                        console.log('Attaching token to request:', token);
+                        // console.log('Attaching token to request:', token);
                         config.headers.Authorization = `Bearer ${token}`;
                     } catch (error) {
-                        console.error('Error getting token:', error);
+                        // console.error('Error getting token:', error);
                         await logOut();
                         return Promise.reject(error);
                     }
@@ -34,7 +34,7 @@ const useAxiosSecure = () => {
             (response) => response,
             async (error) => {
                 if (error.response?.status === 401 || error.response?.status === 403) {
-                    console.log('Authentication error, logging out');
+                    // console.log('Authentication error, logging out');
                     await logOut();
                 }
                 return Promise.reject(error);

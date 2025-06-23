@@ -7,16 +7,16 @@ const Login = () => {
   const { loginUser, signInWithGoogle } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from || '/';
+   const from = location.state?.from || '/';  
 
-  console.log('location in sign in page', location);
+  // console.log('location in sign in page', location);
 
   const handleLogin = e => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    // console.log(email, password);
 
     loginUser(email, password)
       .then(() => {
