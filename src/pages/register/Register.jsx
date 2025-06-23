@@ -135,7 +135,7 @@ const Register = () => {
                   ></path>
                 </g>
               </svg>
-              Login with Google
+              Register with Google
             </button>
         <p className="text-sm text-center">
           Already have an account?{" "}

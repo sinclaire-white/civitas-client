@@ -54,13 +54,10 @@ const Header = () => {
 
         {/* Navigation Links */}
         <div className="navbar-center">
-          <NavLink to={"/upcoming-events"}>
-            <motion.p
-              className="text-sm font-medium md:text-md lg:text-lg text-primary"
-              whileHover={{ scale: 1.1, color: "#449C50" }}
-            >
+          <NavLink to={"/upcoming-events"} className={'text-primary text-sm font-medium md:text-md lg:text-lg'}>
+           
               Upcoming Events
-            </motion.p>
+           
           </NavLink>
         </div>
 

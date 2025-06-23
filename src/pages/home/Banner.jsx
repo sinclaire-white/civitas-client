@@ -38,7 +38,7 @@ const Banner = () => {
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
               className="flex flex-col justify-center gap-4 sm:flex-row sm:justify-start"
             >
-              <NavLink to={"/create-event"}>
+              <NavLink to={"/create-events"}>
                 <button className="w-full px-8 text-lg font-semibold transition-transform duration-300 shadow-xl text-primary btn btn-accent btn-lg hover:scale-105 sm:w-auto">
                   Create Event
                 </button>
