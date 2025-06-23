@@ -43,7 +43,7 @@ const Banner = () => {
                   Create Event
                 </button>
               </NavLink>
-              <NavLink to={"/upcomig-events"}>
+              <NavLink to={"/upcoming-events"}>
                 <button className="w-full px-8 text-lg font-semibold transition-transform duration-300 shadow-xl btn btn-lg hover:scale-105 sm:w-auto">
                   Find Events
                 </button>

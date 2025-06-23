@@ -40,7 +40,7 @@ const Header = () => {
               <img
                 src={"https://i.ibb.co/QF2hrC2b/Civitas-logo-2.png"}
                 alt="Civitas Logo"
-                className="w-16 h-16"
+                className="w-12 h-12 md:w-16 md:h-16"
               />   
               <motion.p
                 className="hidden text-3xl font-bold md:block text-primary"
@@ -56,7 +56,7 @@ const Header = () => {
         <div className="navbar-center">
           <NavLink to={"/upcoming-events"}>
             <motion.p
-              className="text-lg font-medium text-primary"
+              className="text-sm font-medium md:text-md lg:text-lg text-primary"
               whileHover={{ scale: 1.1, color: "#449C50" }}
             >
               Upcoming Events
@@ -66,22 +66,51 @@ const Header = () => {
 
         {/* User Profile / Login */}
         <div className="navbar-end">
-          <div className="mr-3">
+          <div>
             <ThemeToggle></ThemeToggle>
           </div>
           {!user ? (
-            <motion.div
-              className="flex gap-4"
+
+<>
+
+<div className="dropdown dropdown-end sm:hidden">
+      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /> </svg>
+      </div>
+      <ul
+        tabIndex={0}
+        className="p-2 mt-3 shadow menu menu-sm dropdown-content bg-base-100 rounded-box z-1 w-52">
+         
+                 <li><button className="w-full text-white btn btn-primary hover:bg-white hover:text-black"><NavLink to={"/register"}>Register</NavLink></button></li>
+              
+              <li>
+                <button className="w-full text-white btn btn-primary hover:bg-white hover:text-black"><NavLink to={"/login"}>Login</NavLink></button>
+              </li>
+      </ul>
+    
+  </div>
+
+
+
+
+<motion.div
+              className="hidden gap-2 sm:flex md:gap-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
               <NavLink to={"/register"}>
-                <button className="text-white btn btn-info hover:bg-white hover:text-black">Register</button>
+                <button className="text-white btn btn-info hover:bg-white hover:text-black btn-sm md:btn-md">Register</button>
               </NavLink>
               <NavLink to={"/login"}>
-                <button className="text-white btn btn-primary hover:bg-white hover:text-black">Login</button>
+                <button className="text-white btn btn-primary hover:bg-white hover:text-black btn-sm md:btn-md">Login</button>
               </NavLink>
             </motion.div>
+
+
+</>
+
+
+            
           ) : (
             <div className="dropdown dropdown-end">
               <div
