@@ -51,5 +51,4 @@ The entire application is mobile responsive, optimized for user experience, and 
 ---
 
 
-![Civitas Homepage](screenshots/homepage.png)
-![Create Event Page](screenshots/create-event.png)
+
