@@ -12,7 +12,7 @@ A full-featured, community-driven social development event platform where users 
 
 ## 📝 Project Overview
 
-Civitas is a community platform designed to encourage social change through local engagement. It allows users to organize and participate in events like "Tree Plantation in Kishoreganj" or "Road Cleaning in Mirpur." The platform supports role-based functionalities such as event creation, event joining, event management, and personalized dashboards.
+Civitas is a community platform designed to encourage social change through local engagement. It allows users to organize and participate in events like "Tree Plantation in Kishoreganj" or "Road Cleaning in Mirpur." The platform supports functionalities such as event creation, event joining, event management, and personalized dashboards.
 
 The entire application is mobile responsive, optimized for user experience, and built with modern web technologies and security practices.
 
