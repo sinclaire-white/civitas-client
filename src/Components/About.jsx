@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <div>
+    <div className="max-w-screen-xl px-4 mx-auto">
       <div className="container px-6 py-10 mx-auto">
         <h1 className="mb-6 text-4xl font-bold text-center text-primary">
           About Us

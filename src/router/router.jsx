@@ -4,6 +4,7 @@ import Home from "../pages/home/Home";
 import Register from "../pages/register/Register";
 import Login from "../pages/login/Login";
 import Join from "../pages/joinEvent/Join";
+import UserProfile from "../pages/user/UserProfile.jsx"
 import Create from "../pages/createEvent/Create";
 import Manage from "../pages/manageEvents/Manage";
 import PrivateRoute from "./PrivateRoute";
@@ -31,6 +32,14 @@ const router = createBrowserRouter([
       {
         path: "/login",
         Component: Login,
+      },
+      {
+        path: "/dashboard",
+        element: (
+          <PrivateRoute>
+            <UserProfile></UserProfile>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/join-events",
