@@ -1,14 +1,12 @@
 import { NavLink } from "react-router";
 import { AuthContext } from "../providers/AuthContext";
-import { motion } from "framer-motion";
-import Swal from "sweetalert2";
 import { use } from "react";
+import Swal from "sweetalert2";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const { logOut, user } = use(AuthContext);
 
-  // Log out functionality
   const handleLogOut = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -26,105 +24,108 @@ const Header = () => {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="shadow-sm"
-    >
-      <div className="navbar bg-base-100">
+    <header className="sticky top-0 z-50 border-b bg-base-100/80 backdrop-blur-sm border-base-200">
+      <nav className="max-w-screen-xl px-4 mx-auto navbar">
+        
         {/* Logo */}
         <div className="navbar-start">
-          <NavLink to={"/"}>
-            <div className="flex items-center gap-2">
-              <img
-                src={"https://i.ibb.co/QF2hrC2b/Civitas-logo-2.png"}
-                alt="Civitas Logo"
-                className="w-12 h-12 md:w-16 md:h-16"
-              />   
-              <motion.p
-                className="hidden text-3xl font-bold md:block text-primary"
-                whileHover={{ scale: 1.1 }}
-              >
-                Civitas
-              </motion.p>
-            </div>
+          <NavLink to={"/"} className="flex items-center gap-2">
+            <img
+              src="https://i.ibb.co/QF2hrC2b/Civitas-logo-2.png"
+              alt="Civitas Logo"
+              className="w-12 h-12 md:w-16 md:h-16"
+            />
+            <span className="hidden text-2xl font-bold md:block text-primary">
+              Civitas
+            </span>
           </NavLink>
         </div>
 
-        {/* Navigation Links */}
+        {/* Center Links */}
         <div className="navbar-center">
-          <NavLink to={"/upcoming-events"} className={'text-primary text-sm font-medium md:text-md lg:text-lg'}>
-           
-              Upcoming Events
-           
+          <NavLink
+            to={"/upcoming-events"}
+            className="text-sm font-medium text-primary md:text-base lg:text-lg"
+          >
+            Upcoming Events
           </NavLink>
         </div>
 
-        {/* User Profile / Login */}
-        <div className="navbar-end">
-          <div>
-            <ThemeToggle></ThemeToggle>
-          </div>
+        {/* Right Side */}
+        <div className="gap-2 navbar-end">
+          <ThemeToggle />
+
           {!user ? (
+            <>
+              {/* Mobile Dropdown */}
+              <div className="dropdown dropdown-end sm:hidden">
+                <label tabIndex={0} className="btn btn-ghost btn-circle">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h16M4 18h7"
+                    />
+                  </svg>
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="p-2 mt-3 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <NavLink
+                      to={"/register"}
+                      className="w-full text-white btn btn-primary"
+                    >
+                      Register
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to={"/login"}
+                      className="w-full text-white btn btn-primary"
+                    >
+                      Login
+                    </NavLink>
+                  </li>
+                </ul>
+              </div>
 
-<>
-
-<div className="dropdown dropdown-end sm:hidden">
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /> </svg>
-      </div>
-      <ul
-        tabIndex={0}
-        className="p-2 mt-3 shadow menu menu-sm dropdown-content bg-base-100 rounded-box z-1 w-52">
-         
-                 <li><button className="w-full text-white btn btn-primary hover:bg-white hover:text-black"><NavLink to={"/register"}>Register</NavLink></button></li>
-              
-              <li>
-                <button className="w-full text-white btn btn-primary hover:bg-white hover:text-black"><NavLink to={"/login"}>Login</NavLink></button>
-              </li>
-      </ul>
-    
-  </div>
-
-
-
-
-<motion.div
-              className="hidden gap-2 sm:flex md:gap-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              <NavLink to={"/register"}>
-                <button className="text-white btn btn-info hover:bg-white hover:text-black btn-sm md:btn-md">Register</button>
-              </NavLink>
-              <NavLink to={"/login"}>
-                <button className="text-white btn btn-primary hover:bg-white hover:text-black btn-sm md:btn-md">Login</button>
-              </NavLink>
-            </motion.div>
-
-
-</>
-
-
-            
+              {/* Desktop Buttons */}
+              <div className="hidden gap-2 sm:flex">
+                <NavLink to={"/register"}>
+                  <button className="text-white btn btn-info btn-sm md:btn-md">
+                    Register
+                  </button>
+                </NavLink>
+                <NavLink to={"/login"}>
+                  <button className="text-white btn btn-primary btn-sm md:btn-md">
+                    Login
+                  </button>
+                </NavLink>
+              </div>
+            </>
           ) : (
             <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <motion.div
-                  className="w-10 rounded-full"
-                  whileHover={{ scale: 1.2 }}
-                >
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 overflow-hidden rounded-full">
                   <img
                     alt="User Avatar"
-                    src={user?.photoURL || user?.photo || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                    src={
+                      user?.photoURL ||
+                      user?.photo ||
+                      "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                    }
                   />
-                </motion.div>
-              </div>
+                </div>
+              </label>
               <ul
                 tabIndex={0}
                 className="p-2 mt-3 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
@@ -150,8 +151,8 @@ const Header = () => {
             </div>
           )}
         </div>
-      </div>
-    </motion.div>
+      </nav>
+    </header>
   );
 };
 
