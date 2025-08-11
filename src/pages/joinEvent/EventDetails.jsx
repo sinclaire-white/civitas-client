@@ -111,7 +111,7 @@ const EventDetails = () => {
                     <div className="justify-end mt-6 card-actions">
                         <button
                             onClick={handleJoinEvent}
-                            className="text-white btn btn-primary hover:scale-105"
+                            className="w-full transition-transform duration-300 btn sm:w-auto btn-primary hover:btn-accent hover:scale-105 hover:text-primary"
                             disabled={!user}
                         >
                             Join Event

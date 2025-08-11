@@ -9,9 +9,12 @@ import useEventApi from "../../api/useEventApi";
 const Create = () => {
   const { user } = useContext(AuthContext);
   const [eventDate, setEventDate] = useState(null);
+  const [loading, setLoading] = useState(false);
   const { createEvent } = useEventApi();
+
   const handleCreateEvent = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const form = e.target;
     const formData = new FormData(form);
     const newEvent = Object.fromEntries(formData);
@@ -37,37 +40,40 @@ const Create = () => {
         icon: "error",
         confirmButtonText: "Try Again",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="max-w-4xl p-4 mx-auto">
+    <div className="max-w-4xl p-6 mx-auto">
       <h2 className="mb-4 text-4xl font-bold text-center text-primary">
-        Create Your Event Here
+        Create Your Event
       </h2>
-      <p className="mb-4 text-center opacity-70 text-primary">
-        Fill up this form to create your event. Please complete all fields, no
-        field can be left unfilled.
+      <p className="mb-6 text-center text-gray-500">
+        Fill in the form below to create your event. All fields are required.
       </p>
+
       <form
         onSubmit={handleCreateEvent}
-        className="p-6 space-y-4 bg-primary rounded-xl"
+        className="p-8 space-y-6 bg-white shadow-lg rounded-2xl"
       >
-        {/* User Email */}
-        <fieldset className="p-3 border fieldset bg-secondary border-base-100 rounded-box">
-          <label className="text-sm font-bold text-black label">
+        {/* Email */}
+        <div>
+          <label className="block mb-2 text-sm font-semibold text-gray-700">
             Your Email
           </label>
           <input
             type="email"
             value={user?.email || ""}
             disabled
-            className="w-full input input-bordered"
+            className="w-full bg-gray-100 input input-bordered"
           />
-        </fieldset>
+        </div>
+
         {/* Title */}
-        <fieldset className="p-3 border fieldset bg-secondary border-base-100 rounded-box">
-          <label className="text-sm font-bold text-black label">
+        <div>
+          <label className="block mb-2 text-sm font-semibold text-gray-700">
             Event Title
           </label>
           <input
@@ -77,27 +83,26 @@ const Create = () => {
             className="w-full input input-bordered"
             required
           />
-        </fieldset>
+        </div>
 
         {/* Description */}
-        <fieldset className="p-3 border fieldset bg-secondary border-base-100 rounded-box">
-          <label className="text-sm font-bold text-black label">
+        <div>
+          <label className="block mb-2 text-sm font-semibold text-gray-700">
             Description
           </label>
           <textarea
             name="description"
-            className="w-full textarea textarea-bordered"
             rows="3"
             placeholder="Enter Event Description"
+            className="w-full textarea textarea-bordered"
             required
           ></textarea>
-        </fieldset>
+        </div>
 
-        {/* Event Date and Type (Side by Side) */}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {/* Event Date */}
-          <fieldset className="p-3 border fieldset bg-secondary border-base-100 rounded-box">
-            <label className="text-sm font-bold text-black label">
+        {/* Date & Type */}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div>
+            <label className="block mb-2 text-sm font-semibold text-gray-700">
               Event Date
             </label>
             <DatePicker
@@ -108,19 +113,18 @@ const Create = () => {
               minDate={new Date()}
               required
             />
-          </fieldset>
-
-          {/* Event Type */}
-          <fieldset className="p-3 border fieldset bg-secondary border-base-100 rounded-box">
-            <label className="text-sm font-bold text-black label">
+          </div>
+          <div>
+            <label className="block mb-2 text-sm font-semibold text-gray-700">
               Event Type
             </label>
             <select
               name="eventType"
               className="w-full select select-bordered"
               required
+              defaultValue=""
             >
-              <option value="" disabled selected>
+              <option value="" disabled>
                 Select Event Type
               </option>
               <option value="cleanup">Cleanup</option>
@@ -130,12 +134,12 @@ const Create = () => {
               <option value="blood-drive">Blood Drive</option>
               <option value="community-workshop">Community Workshop</option>
             </select>
-          </fieldset>
+          </div>
         </div>
 
         {/* Thumbnail */}
-        <fieldset className="p-3 border fieldset bg-secondary border-base-300 rounded-box">
-          <label className="text-sm font-bold text-black label">
+        <div>
+          <label className="block mb-2 text-sm font-semibold text-gray-700">
             Thumbnail Image URL
           </label>
           <input
@@ -145,11 +149,13 @@ const Create = () => {
             className="w-full input input-bordered"
             required
           />
-        </fieldset>
+        </div>
 
         {/* Location */}
-        <fieldset className="p-3 border fieldset bg-secondary border-base-300 rounded-box">
-          <label className="text-sm font-bold text-black label">Location</label>
+        <div>
+          <label className="block mb-2 text-sm font-semibold text-gray-700">
+            Location
+          </label>
           <input
             type="text"
             name="location"
@@ -157,14 +163,39 @@ const Create = () => {
             className="w-full input input-bordered"
             required
           />
-        </fieldset>
+        </div>
 
-        {/* Submit Button */}
+        {/* Submit */}
         <button
           type="submit"
-          className="w-full py-3 text-lg font-bold text-black bg-white rounded hover:bg-black hover:text-white btn"
+          disabled={loading}
+          className={`w-full px-6 py-3 font-semibold text-white transition-transform duration-300 rounded-lg shadow-md
+            bg-primary hover:bg-accent  hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed hover:text-primary`}
         >
-          Create Event
+          {loading ? (
+            <svg
+              className="w-6 h-6 mx-auto text-primary animate-spin"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+              ></path>
+            </svg>
+          ) : (
+            "Create Event"
+          )}
         </button>
       </form>
     </div>

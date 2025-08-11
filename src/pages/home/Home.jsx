@@ -1,19 +1,20 @@
 import Banner from './Banner';
-import Newsletter from './Newsletter';
-import Gallery from './Gallery';
 import Feature from './Feature';
-import RecentEvents from './RecentEvents'; 
+import RecentEvents from './RecentEvents';
+import Gallery from './Gallery';
+import Newsletter from './Newsletter';
 
 const Home = () => {
-    return (
-        <div className="bg-base-100">
-            <Banner></Banner>
-            <Feature></Feature>
-            <RecentEvents></RecentEvents> 
-            <Gallery></Gallery>
-            <Newsletter></Newsletter>
-        </div>
-    );
+  return (
+    <div className="min-h-screen bg-base-100">
+      <Banner />
+
+      <section className="py-12"><div className="max-w-screen-xl px-4 mx-auto"><Feature /></div></section>
+      <section className="py-12"><div className="max-w-screen-xl px-4 mx-auto"><RecentEvents /></div></section>
+      <section className="py-12"><div className="max-w-screen-xl px-4 mx-auto"><Gallery /></div></section>
+      <section className="py-12"><div className="max-w-screen-xl px-4 mx-auto"><Newsletter /></div></section>
+    </div>
+  );
 };
 
 export default Home;

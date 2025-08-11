@@ -104,7 +104,7 @@ const Upcoming = () => {
                   <div className="mt-4 text-right">
                     <Link
                       to={`/events/event-details/${event._id}`}
-                      className="text-white btn btn-primary hover:scale-105"
+                      className="w-full text-white transition-transform duration-300 btn btn-primary hover:scale-105 sm:w-auto hover:btn-accent hover hover:text-primary"
                     >
                       View Event
                     </Link>

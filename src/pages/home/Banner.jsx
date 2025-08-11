@@ -7,8 +7,9 @@ const Banner = () => {
 
   return (
     <section className="py-12 bg-primary">
-      <div className="flex flex-col items-center max-w-screen-xl gap-8 px-4 mx-auto overflow-hidden sm:px-6 lg:px-8 rounded-2xl sm:flex-row">
-        {/* Left content */}
+      <div className="flex flex-col-reverse items-center max-w-screen-xl gap-8 px-4 mx-auto overflow-hidden sm:px-6 lg:px-8 sm:flex-row">
+        
+        {/* Left Content */}
         <div className="text-center sm:w-1/2 sm:text-left">
           <motion.h1
             initial={{ opacity: 0, x: -50 }}
@@ -31,7 +32,7 @@ const Banner = () => {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             className="flex flex-col justify-center max-w-md gap-4 mx-auto sm:flex-row sm:justify-start sm:mx-0"
@@ -54,7 +55,7 @@ const Banner = () => {
           <img
             src={bannerImage}
             alt="Inspiring community event"
-            className="object-cover w-full h-auto max-w-md shadow-2xl rounded-3xl sm:max-w-full"
+            className="object-cover w-full max-w-md shadow-2xl rounded-3xl sm:max-w-full"
           />
         </div>
       </div>
