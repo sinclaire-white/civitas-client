@@ -29,7 +29,6 @@ The entire application is mobile responsive, optimized for user experience, and 
 ## 🌟 Core Features
 
 ✅ Secure authentication (email/password + Google login)  
-✅ Role-based private routes  
 ✅ Create and manage local social events  
 ✅ Event types (Cleanup, Plantation, Donation, etc.) with dropdown selection  
 ✅ Prevent past dates using `react-datepicker`  
